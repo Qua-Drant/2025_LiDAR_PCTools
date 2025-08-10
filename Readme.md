@@ -6,27 +6,27 @@
 1. IOandVisualization - 点云IO与可视化模块
 文件位置: IOandVisualization\IOandVisualization.cpp
 主要功能:
-•	LAS格式点云转换为PCD格式（保留强度信息）
-•	PCD格式点云转换为TXT格式（支持RGB和强度两种模式）
-•	点云可视化展示
-•	支持强度值的伪彩色渲染
+- LAS格式点云转换为PCD格式（保留强度信息）
+- PCD格式点云转换为TXT格式（支持RGB和强度两种模式）
+- 点云可视化展示
+- 支持强度值的伪彩色渲染
 核心函数:
-•	las2pcd_XYZI(): LAS文件转PCD文件
-•	pcd2txt_RGB(): PCD文件转TXT文件（RGB模式）
-•	pcd2txt_intensity(): PCD文件转TXT文件（强度模式）
+- las2pcd_XYZI(): LAS文件转PCD文件
+- pcd2txt_RGB(): PCD文件转TXT文件（RGB模式）
+- pcd2txt_intensity(): PCD文件转TXT文件（强度模式）
 2. SingleTreeSegmentation - 单木分割模块
 文件位置: SingleTreeSegmentation\SingleTimberDivision.cpp
 主要功能:
-•	基于欧氏聚类的树干检测
-•	冠层高度模型（CHM）生成
-•	杆状物提取和垂直聚类
-•	单木参数计算（DBH胸径、树高等）
-•	树冠分割和轮廓提取
+- 基于欧氏聚类的树干检测
+- 冠层高度模型（CHM）生成
+- 杆状物提取和垂直聚类
+- 单木参数计算（DBH胸径、树高等）
+- 树冠分割和轮廓提取
 关键算法:
-•	杆状物提取: 使用水平分层+垂直条件欧氏聚类检测树干
-•	CHM生成: 基于栅格化的冠层高度模型
-•	胸径计算: 基于三点拟合的稳健胸径估算
-•	树冠分割: 基于树顶种子点的区域生长算法
+- 杆状物提取: 使用水平分层+垂直条件欧氏聚类检测树干
+- CHM生成: 基于栅格化的冠层高度模型
+- 胸径计算: 基于三点拟合的稳健胸径估算
+- 树冠分割: 基于树顶种子点的区域生长算法
 参数配置:
 ```cpp
 // 杆状物提取参数
@@ -42,10 +42,10 @@ const float CROWN_RADIUS_FACTOR = 0.65f;              // 树冠半径因子
 3. TreeDetectionEvaluation - 树木检测精度评估模块
 文件位置: TreeDetectionEvaluation\TreeDetectionEvaluation.cpp
 主要功能:
-•	基于点的精度评估
-•	基于对象的精度评估
-•	TP/FP/FN统计分析
-•	精度指标计算（Precision、Recall、F-score）
+- 基于点的精度评估
+- 基于对象的精度评估
+- TP/FP/FN统计分析
+- 精度指标计算（Precision、Recall、F-score）
 评估指标:
 Precision = TP / (TP + FP)
 Recall = TP / (TP + FN)
@@ -53,23 +53,23 @@ F-score = 2 × Precision × Recall / (Precision + Recall)
 4. Segmentation - 点云分割模块
 文件位置: Segmentation\Segmentation.cpp
 支持算法:
-•	区域生长分割（RegionGrowing）
-•	RANSAC平面分割
+- 区域生长分割（RegionGrowing）
+- RANSAC平面分割
 
 ## 环境依赖
 ### 必需库
-•	PCL (Point Cloud Library): 版本 ≥ 1.8
-•	OpenCV: 版本 ≥ 3.0
-•	Eigen3: 线性代数库
-•	Boost: 版本 ≥ 1.65
-•	VTK: 可视化工具包
+- PCL (Point Cloud Library): 版本 ≥ 1.8
+- OpenCV: 版本 ≥ 3.0
+- Eigen3: 线性代数库
+- Boost: 版本 ≥ 1.65
+- VTK: 可视化工具包
 ### 可选依赖
-•	LAStools: 用于LAS文件处理
-•	LASzip: LAS文件压缩支持
+- LAStools: 用于LAS文件处理
+- LASzip: LAS文件压缩支持
 ### 开发环境
-•	Visual Studio 2019/2022
-•	C++14 标准支持
-•	Windows 10/11 (推荐)
+- Visual Studio 2019/2022
+- C++14 标准支持
+- Windows 10/11 (推荐)
 
 ## 编译配置
 Visual Studio项目结构
@@ -123,8 +123,8 @@ Solution/
 ```
 ### 输入数据格式
 LAS文件
-•	标准LAS格式激光雷达点云
-•	支持强度信息和RGB信息
+- 标准LAS格式激光雷达点云
+- 支持强度信息和RGB信息
 TXT文件格式
 ```
 # 格式1: X Y Z Intensity Label
@@ -136,19 +136,19 @@ TXT文件格式
 ```
 ### 输出结果
 #### 单木分割结果
-•	trees_divpro_test.pcd: 带标签的分割点云
-•	tree_parameters.txt: 单木参数文件
+- trees_divpro_test.pcd: 带标签的分割点云
+- tree_parameters.txt: 单木参数文件
 ```
 ID X Y DBH Height
   1 10.5 20.3 0.35 15.2
   2 15.8 25.7 0.42 18.6
 ```
-•	trees_divpro_test.jpg: 分割预览图
+- trees_divpro_test.jpg: 分割预览图
 #### 精度评估结果
-•	point_based_true_positive.pcd
-•	point_based_false_positive.pcd
-•	point_based_false_negative.pcd
-•	object_based_*.pcd: 对象级评估结果
+- point_based_true_positive.pcd
+- point_based_false_positive.pcd
+- point_based_false_negative.pcd
+- object_based_*.pcd: 对象级评估结果
 
 ## 算法特色
 1.	分层树干检测: 结合水平聚类和垂直条件欧氏聚类的树干检测方法
@@ -156,15 +156,15 @@ ID X Y DBH Height
 3.	多尺度评估: 同时支持点级和对象级的精度评估
 
 ## 技术优势
-•	处理大规模点云数据（支持百万级点云）
-•	适应复杂林分结构
-•	高精度的单木参数提取
-•	完整的精度评估体系
+- 处理大规模点云数据（支持百万级点云）
+- 适应复杂林分结构
+- 高精度的单木参数提取
+- 完整的精度评估体系
 
 ## 性能特征
-•	处理速度: 约1000万点/分钟（取决于硬件配置）
-•	内存占用: 约1GB RAM（500万点云）
-•	检测精度: F-score通常>85%（依据数据质量）
+- 处理速度: 约1000万点/分钟（取决于硬件配置）
+- 内存占用: 约1GB RAM（500万点云）
+- 检测精度: F-score通常>85%（依据数据质量）
 
 ## 常见问题
 Q: 编译时找不到PCL库
